@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamilla Butik</title>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <style>
+      :root {
+        --main-color: #1f3b57;
+        --border: 0.1rem solid black;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Playfair Display", serif;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        background-color: white;
+        background-image: url("images/cicek.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 100vh;
+      }
+
+      /* Dil seçici */
+      .language-switcher {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        z-index: 1000;
+      }
+
+      .language-switcher img {
+        width: 2.5rem;
+        margin-left: 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      /* Logo */
+      .logo-header {
+        width: 100vw;
+        height: 30vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+      }
+
+      .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        max-width: none;
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 1.5rem 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar a {
+        font-size: 2rem;
+        color: var(--main-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .navbar a:hover {
+        color: #f2dede;
+        border-bottom: 2px solid #f2dede;
+      }
+
+      /* Butonlar */
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .buttons button {
+        font-size: 2rem;
+        background: none;
+        border: var(--border);
+        padding: 1rem 2rem;
+        cursor: pointer;
+        color: var(--main-color);
+        border-radius: 0.5rem;
+      }
+
+      .buttons button:hover {
+        background-color: var(--main-color);
+        color: white;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .navbar a {
+          font-size: 2.4rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Dil Seçici -->
+    <div class="language-switcher">
+      <img
+        src="images/tr-flag.webp"
+        alt="Türkçe"
+        onclick="setLanguage('tr')"
+        title="Türkçe"
+      />
+      <img
+        src="images/en-flag.webp"
+        alt="English"
+        onclick="setLanguage('en')"
+        title="English"
+      />
+    </div>
+
+    <!-- Logo -->
+    <header class="logo-header">
+      <img src="images/logo.jpeg" alt="Kamilla Logo" class="logo-img" />
+    </header>
+
+    <!-- TÜRKÇE MENÜ -->
+    <div class="lang lang-tr">
+      <nav class="navbar">
+        <a href="#">🏠 Ana Sayfa</a>
+        <a href="urunler.html">🛍️ Ürünler</a>
+        <a href="yenigelenler.html">👗 Yeni Gelenler</a>
+        <a href="iletisim.html">📱 İletişim</a>
+        <a href="indirimler.html">🎁 İndirimler</a>
+      </nav>
+    </div>
+
+    <!-- ENGLISH MENU -->
+    <div class="lang lang-en" style="display: none">
+      <nav class="navbar">
+        <a href="#">🏠 Home</a>
+        <a href="urunler.html">🛍️ Products</a>
+        <a href="yenigelenler.html">👗 New Arrivals</a>
+        <a href="iletisim.html">📱 Contact</a>
+        <a href="indirimler.html">🎁 Offers</a>
+      </nav>
+    </div>
+
+    <!-- JS -->
+    <script>
+      function setLanguage(lang) {
+        document
+          .querySelectorAll(".lang")
+          .forEach((el) => (el.style.display = "none"));
+        document.querySelector(".lang-" + lang).style.display = "block";
+      }
+    </script>
+    <!-- Tasarımcı Bilgisi -->
+    <footer
+      style="
+        text-align: center;
+        margin-top: 4rem;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        font-size: 1.4rem;
+        color: #1f3b57;
+      "
+    >
+      Made with ❤️ by <strong>Ayşen Sağlamer</strong> |
+      <a
+        href="https://instagram.com/aysen.codes"
+        target="_blank"
+        style="color: #1f3b57; text-decoration: none"
+        >@aysen.codes</a
+      >
+    </footer>
+  </body>
+</html>

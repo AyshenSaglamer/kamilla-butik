@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamilla Butik - Elbiseler</title>
+
+    <!-- Font ve İkonlar -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        background-image: url("images/cicek.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100vh;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .language-switcher {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        z-index: 1000;
+      }
+
+      .language-switcher img {
+        width: 30px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .page-title-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 60px;
+        padding-bottom: 10px;
+      }
+
+      .page-title {
+        background-color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 3rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .navbar a {
+        font-size: 1.6rem;
+        text-decoration: none;
+        color: #1f3b57;
+        font-weight: 600;
+        padding: 0.8rem 1.2rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .navbar a:hover {
+        background-color: #1f3b57;
+        color: white;
+      }
+
+      .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 30px;
+      }
+
+      .product-card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      .product-card h3 {
+        margin-top: 10px;
+        font-size: 20px;
+      }
+
+      .product-card p {
+        font-size: 16px;
+        color: #666;
+      }
+
+      .back-home {
+        text-align: center;
+        padding: 30px 0;
+      }
+
+      .back-home a {
+        background-color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #1f3b57;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        display: inline-block;
+      }
+
+      .back-home a:hover {
+        background-color: #1f3b57;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dil Seçici -->
+    <div class="language-switcher">
+      <img src="images/tr-flag.webp" alt="TR" onclick="setLanguage('tr')" />
+      <img src="images/en-flag.webp" alt="EN" onclick="setLanguage('en')" />
+    </div>
+
+    <!-- Sayfa Başlığı -->
+    <div class="page-title-wrapper">
+      <h1 id="page-title" class="page-title">Aksesuarlar</h1>
+    </div>
+
+    <!-- Ürün Listesi -->
+    <div class="product-list" id="product-list"></div>
+
+    <!-- Ana Sayfaya Dön -->
+    <div class="back-home">
+      <a href="index.html" id="back-button">🏡 Ana Sayfaya Dön</a>
+    </div>
+
+    <!-- SheetDB'den Ürün Çek -->
+    <script>
+      fetch("https://sheetdb.io/api/v1/gub2fzioqcrd7")
+        .then((res) => res.json())
+        .then((data) => {
+          const list = document.getElementById("product-list");
+          const filtered = data.filter(
+            (item) =>
+              item["Kategori / Category"].toLowerCase().includes("elbiseler") ||
+              item["Kategori / Category"].toLowerCase().includes("dresses")
+          );
+          filtered.forEach((product) => {
+            const div = document.createElement("div");
+            div.className = "product-card";
+            div.innerHTML = `
+              <img src="${product["Fotoğraf Linki"]}" alt="${product["Ürün Adı"]}" />
+              <h3>${product["Urun Adı"]}</h3>
+              <p>${product["Açıklama"]}</p>
+              <p><strong>${product["Fiyat"]} TL</strong></p>
+            `;
+            list.appendChild(div);
+          });
+        });
+    </script>
+
+    <!-- Dil Scripti -->
+    <script>
+      const translations = {
+        tr: {
+          title: "Aksesuarlar",
+          back: "🏡 Ana Sayfaya Dön",
+        },
+        en: {
+          title: "Accessories",
+          back: "🏡 Back to Home",
+        },
+      };
+
+      function setLanguage(lang) {
+        localStorage.setItem("lang", lang);
+        document.getElementById("page-title").textContent =
+          translations[lang].title;
+        document.getElementById("back-button").textContent =
+          translations[lang].back;
+
+        document.querySelectorAll(".lang").forEach((el) => {
+          el.style.display = "none";
+        });
+        document
+          .querySelectorAll(".lang-" + lang)
+          .forEach((el) => (el.style.display = "flex"));
+      }
+
+      const savedLang = localStorage.getItem("lang") || "tr";
+      setLanguage(savedLang);
+    </script>
+  </body>
+</html>

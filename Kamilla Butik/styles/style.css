@@ -1,0 +1,95 @@
+/* Genel Ayarlar */
+body {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  color: #000;
+  background-color: white;
+  background-image: url("cicek.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* Logo */
+.logo-header {
+  text-align: center;
+  background-color: white;
+  padding: 1rem 0;
+}
+
+.logo-img {
+  max-width: 100%;
+  height: auto;
+  width: 500px;
+}
+
+/* Menü */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  font-size: 2rem; /* Yazılar büyütüldü */
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar a {
+  color: #222;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* Dil Seçici */
+.language-switcher {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+}
+
+.language-switcher img {
+  width: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Butonlar */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  font-size: 1.8rem;
+}
+
+/* İletişim Sayfası Özel */
+.contact-info {
+  text-align: center;
+  padding: 2rem;
+  font-size: 2.2rem; /* Yazılar büyütüldü */
+  background-color: white;
+}
+
+.contact-info i {
+  margin-right: 1rem;
+  color: #333;
+}
+
+/* Harita */
+.map-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+iframe {
+  width: 90%;
+  height: 400px;
+  border: none;
+}

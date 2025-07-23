@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İletişim - Kamilla Butik</title>
+
+    <!-- Font ve ikonlar -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <style>
+      body {
+        font-family: "Playfair Display", serif;
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        background-image: url("images/cicek.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        min-height: 100vh;
+        color: #333;
+      }
+
+      .language-switcher {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+
+      .language-switcher img {
+        width: 30px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      .logo-header {
+        text-align: center;
+        background-color: white;
+        padding: 20px;
+      }
+
+      .logo-img {
+        max-width: 300px;
+      }
+
+      .contact-info {
+        text-align: center;
+        font-size: 20px;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.85); /* saydam arka */
+        border-radius: 10px;
+        margin: 20px auto;
+        max-width: 800px;
+      }
+
+      .contact-info h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        margin: 10px 0;
+      }
+
+      .map-container {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      iframe {
+        width: 90%;
+        height: 500px;
+        border: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .back-home {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .back-home a {
+        text-decoration: none;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        transition: background-color 0.3s;
+      }
+
+      .back-home a:hover {
+        background-color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Dil Seçici -->
+    <div class="language-switcher">
+      <img src="images/tr-flag.webp" alt="TR" onclick="setLanguage('tr')" />
+      <img src="images/en-flag.webp" alt="EN" onclick="setLanguage('en')" />
+    </div>
+
+    <!-- Logo -->
+    <header class="logo-header">
+      <img src="images/logo.jpeg" alt="Kamilla Logo" class="logo-img" />
+    </header>
+
+    <!-- İletişim Bilgileri -->
+    <div class="contact-info">
+      <h1 data-i18n="title">📱 İletişim</h1>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        <span data-i18n="address"
+          >Başbuğ Sokak No:15, Karakol, Gazimağusa / KKTC</span
+        >
+      </p>
+      <p><i class="fas fa-phone"></i> +90 542 851 4677</p>
+      <p><i class="fas fa-envelope"></i> kamillabutik1@gmail.com</p>
+      <p><i class="fab fa-instagram"></i> @kamillabutik1</p>
+    </div>
+
+    <!-- Harita -->
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d518.0645774453698!2d33.92605884067719!3d35.131394082847535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfc9cd94cbee5d%3A0xaca559ad0630348c!2sDa%C4%9Fl%C4%B1%20Sigorta%20Gazima%C4%9Fusa%20Merkez%20Ofisi!5e0!3m2!1str!2s!4v1753219618741!5m2!1str!2s"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+
+    <!-- Ana Sayfaya Dön -->
+    <div class="back-home">
+      <a href="index.html" data-i18n="back">🏠 Ana Sayfaya Dön</a>
+    </div>
+
+    <!-- Çok Dilli Destek -->
+    <script>
+      const translations = {
+        tr: {
+          title: "📱 İletişim",
+          address: "Başbuğ Sokak No:7, Karakol, Gazimağusa",
+          back: "🏠 Ana Sayfaya Dön",
+        },
+        en: {
+          title: "📱 Contact",
+          address: "Basbug Street No:7, Karakol, Famagusta",
+          back: "🏠 Back to Home",
+        },
+      };
+
+      function setLanguage(lang) {
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          el.textContent = translations[lang][key] || key;
+        });
+      }
+
+      setLanguage("tr");
+    </script>
+  </body>
+</html>
