@@ -161,31 +161,6 @@
       <a href="index.html" id="back-button">🏡 Ana Sayfaya Dön</a>
     </div>
 
-    <!-- SheetDB'den Ürün Çek -->
-    <script>
-      fetch("https://sheetdb.io/api/v1/gub2fzioqcrd7")
-        .then((res) => res.json())
-        .then((data) => {
-          const list = document.getElementById("product-list");
-          const filtered = data.filter(
-            (item) =>
-              item["Kategori / Category"].toLowerCase().includes("elbiseler") ||
-              item["Kategori / Category"].toLowerCase().includes("dresses")
-          );
-          filtered.forEach((product) => {
-            const div = document.createElement("div");
-            div.className = "product-card";
-            div.innerHTML = `
-              <img src="${product["Fotoğraf Linki"]}" alt="${product["Ürün Adı"]}" />
-              <h3>${product["Urun Adı"]}</h3>
-              <p>${product["Açıklama"]}</p>
-              <p><strong>${product["Fiyat"]} TL</strong></p>
-            `;
-            list.appendChild(div);
-          });
-        });
-    </script>
-
     <!-- Dil Scripti -->
     <script>
       const translations = {

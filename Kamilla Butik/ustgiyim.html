@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kamilla Butik - Elbiseler</title>
-
-    <!-- Font ve İkonlar -->
+    <title>Kamilla Butik - Üst Giyim</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -60,32 +58,6 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
-      .navbar {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 1.5rem 1rem;
-        background-color: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-      }
-
-      .navbar a {
-        font-size: 1.6rem;
-        text-decoration: none;
-        color: #1f3b57;
-        font-weight: 600;
-        padding: 0.8rem 1.2rem;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-      }
-
-      .navbar a:hover {
-        background-color: #1f3b57;
-        color: white;
-      }
-
       .product-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -99,6 +71,11 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
+        transition: 0.3s;
+      }
+
+      .product-card:hover {
+        transform: scale(1.02);
       }
 
       .product-card img {
@@ -110,11 +87,7 @@
       .product-card h3 {
         margin-top: 10px;
         font-size: 20px;
-      }
-
-      .product-card p {
-        font-size: 16px;
-        color: #666;
+        color: #1f3b57;
       }
 
       .back-home {
@@ -132,7 +105,6 @@
         color: #1f3b57;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         transition: 0.3s;
-        display: inline-block;
       }
 
       .back-home a:hover {
@@ -161,29 +133,86 @@
       <a href="index.html" id="back-button">🏡 Ana Sayfaya Dön</a>
     </div>
 
-    <!-- SheetDB'den Ürün Çek -->
+    <!-- Ürünleri Manuel Listele -->
     <script>
-      fetch("https://sheetdb.io/api/v1/gub2fzioqcrd7")
-        .then((res) => res.json())
-        .then((data) => {
-          const list = document.getElementById("product-list");
-          const filtered = data.filter(
-            (item) =>
-              item["Kategori / Category"].toLowerCase().includes("elbiseler") ||
-              item["Kategori / Category"].toLowerCase().includes("dresses")
-          );
-          filtered.forEach((product) => {
-            const div = document.createElement("div");
-            div.className = "product-card";
-            div.innerHTML = `
-              <img src="${product["Fotoğraf Linki"]}" alt="${product["Ürün Adı"]}" />
-              <h3>${product["Urun Adı"]}</h3>
-              <p>${product["Açıklama"]}</p>
-              <p><strong>${product["Fiyat"]} TL</strong></p>
-            `;
-            list.appendChild(div);
-          });
-        });
+      const products = [
+        {
+          name: "Kırmızı Ekose Ceket",
+          image: "images/Bluz 1.jpeg",
+        },
+        {
+          name: "Kırmızı Desenli Ceket",
+          image: "images/Bluz 2.jpeg",
+          link: "bluz2.html",
+        },
+        {
+          name: "Oversize Beyaz Gömlek",
+          image: "images/Bluz 3.jpeg",
+          link: "bluz3.html",
+        },
+        {
+          name: "Şık Dantel Bluz",
+          image: "images/Bluz 4.jpeg",
+          link: "bluz4.html",
+        },
+        {
+          name: "Kahverengi Gömlek",
+          image: "images/Bluz 5.jpeg",
+          link: "bluz5.html",
+        },
+        {
+          name: "Kırmızı Saten Bluz",
+          image: "images/Bluz 6.jpeg",
+          link: "bluz6.html",
+        },
+        {
+          name: "Baskılı Crop",
+          image: "images/Bluz 7.jpeg",
+          link: "bluz7.html",
+        },
+        {
+          name: "Çizgili Gömlek",
+          image: "images/Bluz 8.jpeg",
+          link: "bluz8.html",
+        },
+        {
+          name: "Kareli Bluz",
+          image: "images/Bluz 9.jpeg",
+          link: "bluz9.html",
+        },
+        {
+          name: "Oversize Tişört",
+          image: "images/Bluz 10.jpeg",
+          link: "bluz10.html",
+        },
+        {
+          name: "Renkli Desenli Gömlek",
+          image: "images/Bluz 11.jpeg",
+          link: "bluz11.html",
+        },
+        {
+          name: "Keten Beyaz Gömlek",
+          image: "images/Bluz 12.jpeg",
+          link: "bluz12.html",
+        },
+        {
+          name: "Lila Gömlek",
+          image: "images/Bluz 13.jpeg",
+          link: "bluz13.html",
+        },
+      ];
+
+      const list = document.getElementById("product-list");
+      products.forEach((product) => {
+        const div = document.createElement("div");
+        div.className = "product-card";
+        div.innerHTML = `
+  <img src="${product.image}" alt="${product.name}" />
+  <h3>${product.name}</h3>
+`;
+
+        list.appendChild(div);
+      });
     </script>
 
     <!-- Dil Scripti -->
@@ -205,13 +234,6 @@
           translations[lang].title;
         document.getElementById("back-button").textContent =
           translations[lang].back;
-
-        document.querySelectorAll(".lang").forEach((el) => {
-          el.style.display = "none";
-        });
-        document
-          .querySelectorAll(".lang-" + lang)
-          .forEach((el) => (el.style.display = "flex"));
       }
 
       const savedLang = localStorage.getItem("lang") || "tr";
