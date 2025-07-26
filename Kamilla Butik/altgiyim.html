@@ -137,50 +137,57 @@
     <script>
       const products = [
         {
-          name: "Siyah Beyaz Kot Pantolon",
+          name_tr: "Siyah Beyaz Kot Pantolon",
+          name_en: "Black and White Denim Pants",
           image: "images/Pantolon1.jpeg",
         },
         {
-          name: "Siyah Kot Pantolon",
+          name_tr: "Siyah Kot Pantolon",
+          name_en: "Black Denim Pants",
           image: "images/Pantolon2.jpeg",
         },
         {
-          name: "Lacivert Kot Pantolon",
+          name_tr: "Lacivert Kot Pantolon",
+          name_en: "Navy Denim Pants",
           image: "images/Pantolon3.jpeg",
         },
         {
-          name: "Kot Pantolon",
+          name_tr: "Kot Pantolon",
+          name_en: "Denim Pants",
           image: "images/Pantolon4.jpeg",
-          link: "bluz4.html",
         },
         {
-          name: "Siyah Çiçek Desenli Pantolon",
+          name_tr: "Siyah Çiçek Desenli Pantolon",
+          name_en: "Black Floral Pants",
           image: "images/Pantolon5.jpeg",
         },
         {
-          name: "Lacivert Pantolon",
+          name_tr: "Lacivert Pantolon",
+          name_en: "Navy Pants",
           image: "images/Pantolon6.jpeg",
         },
         {
-          name: "Mavi Pantolon",
+          name_tr: "Mavi Pantolon",
+          name_en: "Blue Pants",
           image: "images/Pantolon7.jpeg",
         },
         {
-          name: "Toprak Rengi Pantolon",
+          name_tr: "Toprak Rengi Pantolon",
+          name_en: "Earth-Tone Pants",
           image: "images/Pantolon8.jpeg",
-          link: "bluz8.html",
         },
       ];
 
       const list = document.getElementById("product-list");
-      products.forEach((product) => {
+      products.forEach((product, index) => {
         const div = document.createElement("div");
         div.className = "product-card";
         div.innerHTML = `
-  <img src="${product.image}" alt="${product.name}" />
-  <h3>${product.name}</h3>
-`;
-
+        <img src="${product.image}" alt="${product.name_tr}" />
+        <h3 class="product-title" data-tr="${product.name_tr}" data-en="${product.name_en}">
+          ${product.name_tr}
+        </h3>
+      `;
         list.appendChild(div);
       });
     </script>
@@ -204,8 +211,13 @@
           translations[lang].title;
         document.getElementById("back-button").textContent =
           translations[lang].back;
-      }
 
+        // Ürün isimlerini güncelle
+        const productTitles = document.querySelectorAll(".product-title");
+        productTitles.forEach((el) => {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        });
+      }
       const savedLang = localStorage.getItem("lang") || "tr";
       setLanguage(savedLang);
     </script>

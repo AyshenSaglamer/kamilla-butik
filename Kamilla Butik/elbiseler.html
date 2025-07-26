@@ -137,20 +137,22 @@
     <script>
       const products = [
         {
-          name: "Siyah Desenli Elbise",
+          name_tr: "Siyah Desenli Elbise",
+          name_en: "Black Patterned Dress",
           image: "images/Elbise 1.jpeg",
         },
       ];
 
       const list = document.getElementById("product-list");
-      products.forEach((product) => {
+      products.forEach((product, index) => {
         const div = document.createElement("div");
         div.className = "product-card";
         div.innerHTML = `
-  <img src="${product.image}" alt="${product.name}" />
-  <h3>${product.name}</h3>
-`;
-
+    <img src="${product.image}" alt="${product.name_tr}" />
+    <h3 class="product-title" data-tr="${product.name_tr}" data-en="${product.name_en}">
+      ${product.name_tr}
+    </h3>
+  `;
         list.appendChild(div);
       });
     </script>
@@ -174,6 +176,12 @@
           translations[lang].title;
         document.getElementById("back-button").textContent =
           translations[lang].back;
+
+        // Ürün isimlerini güncelle
+        const productTitles = document.querySelectorAll(".product-title");
+        productTitles.forEach((el) => {
+          el.textContent = el.getAttribute(`data-${lang}`);
+        });
       }
 
       const savedLang = localStorage.getItem("lang") || "tr";
